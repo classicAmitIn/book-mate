@@ -7,6 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <a href="{{ route('books.create') }}">
+                <x-primary-button>
+                    {{ __('Add New Book') }}
+                </x-primary-button>
+            </a>
+
             <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
                 @foreach ($books as $book)
                     <div class="p-6 flex space-x-2">
