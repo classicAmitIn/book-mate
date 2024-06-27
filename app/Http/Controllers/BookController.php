@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class BookController extends Controller
@@ -53,24 +54,40 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $book)
+    public function edit(Book $book): View
     {
-        //
+        // Gate::authorize('update', $book);
+
+        return view('books.edit', [
+            'book' => $book,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book): RedirectResponse
     {
-        //
+        // Gate::authorize('update', $book);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255|min:5',
+        ]);
+
+        $book->update($validated);
+
+        return redirect(route('books.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy(Book $book): RedirectResponse
     {
-        //
+        // Gate::authorize('delete', $book);
+
+        $book->delete();
+
+        return redirect(route('books.index'));
     }
 }
