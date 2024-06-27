@@ -11,11 +11,15 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('books.store') }}">
                         @csrf
+                        <x-input-label for="title" :value="__('Title of your Book')" />
                         <x-text-input
+                            id="title"
                             name="title"
                             placeholder="{{ __('Title of your book?') }}"
+                            :value="old('title')"
+                            required autofocus
                             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        >{{ old('title') }}</x-text-input>
+                        />
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         <x-primary-button class="mt-4">{{ __('Add Book') }}</x-primary-button>
                     </form>
