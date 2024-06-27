@@ -48,7 +48,11 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        Gate::authorize('view', $book);
+
+        return view('books.show', [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -56,7 +60,7 @@ class BookController extends Controller
      */
     public function edit(Book $book): View
     {
-        // Gate::authorize('update', $book);
+        Gate::authorize('update', $book);
 
         return view('books.edit', [
             'book' => $book,
@@ -68,7 +72,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book): RedirectResponse
     {
-        // Gate::authorize('update', $book);
+        Gate::authorize('update', $book);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255|min:5',
@@ -84,7 +88,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book): RedirectResponse
     {
-        // Gate::authorize('delete', $book);
+        Gate::authorize('delete', $book);
 
         $book->delete();
 
