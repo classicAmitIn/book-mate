@@ -20,7 +20,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::resource('books', BookController::class)
-    ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
