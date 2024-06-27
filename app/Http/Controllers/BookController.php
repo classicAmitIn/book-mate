@@ -31,7 +31,7 @@ class BookController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|min:5',
         ]);
 
         $request->user()->books()->create($validated);
