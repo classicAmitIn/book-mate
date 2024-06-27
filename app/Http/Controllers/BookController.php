@@ -14,18 +14,18 @@ class BookController extends Controller
      */
     public function index(): View
     {
-        // load the view and pass the books
+        // Load the view and return only logged in user books in descending order
         return view('books.index', [
-            'books' => Book::with('user')->latest()->get(),
+            'books' => Book::where('user_id', auth()->id())->latest()->get(),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('books.create');
     }
 
     /**
