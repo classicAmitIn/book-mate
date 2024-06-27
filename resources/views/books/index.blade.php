@@ -52,7 +52,7 @@
                             @endif
 
                             </div>
-                            <p class="mt-4 text-lg text-gray-900">{{ $book->title }}</p>
+                            <a href="{{ route('books.show', $book) }}"><p class="mt-4 text-lg text-gray-900">{{ $book->title }}</p></a>
                         </div>
                     </div>
                 @endforeach
