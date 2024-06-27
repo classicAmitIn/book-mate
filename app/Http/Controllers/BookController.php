@@ -14,7 +14,10 @@ class BookController extends Controller
      */
     public function index(): View
     {
-        return view('books.index');
+        // load the view and pass the books
+        return view('books.index', [
+            'books' => Book::with('user')->latest()->get(),
+        ]);
     }
 
     /**
