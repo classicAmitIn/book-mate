@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Book Details') }}
+            {{ __('Book Details').' - '.$book->title }}
         </h2>
     </x-slot>
 
@@ -16,8 +16,8 @@
                         <div class="flex-1">
                             <div class="flex justify-between items-center">
                                 <div>
-                                    <span class="text-gray-800">{{ $book->user->name }}</span>
-                                    <small class="ml-2 text-sm text-gray-600">{{ $book->created_at->format('j M Y, g:i a') }}</small>
+                                    <span class="text-gray-600">created on</span>
+                                    <small class="text-sm text-gray-600">{{ $book->created_at->format('j M Y, g:i a') }}</small>
 
                                     @unless ($book->created_at->eq($book->updated_at))
                                         <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
