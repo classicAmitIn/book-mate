@@ -12,6 +12,13 @@ class Book extends Model
 
     protected $fillable = [
         'title',
+        'authors',
+        'categories',
+        'page_count',
+        'description',
+        'thumbnail',
+        'isbn',
+        'published_date',
     ];
 
     public function user(): BelongsTo

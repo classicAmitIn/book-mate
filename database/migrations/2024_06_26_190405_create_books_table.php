@@ -15,6 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
+            $table->json('authors')->nullable();
+            $table->json('categories')->nullable();
+            $table->integer('page_count')->nullable();
+            $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('isbn')->nullable();
+            $table->year('published_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
